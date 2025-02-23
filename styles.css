@@ -1,0 +1,98 @@
+body {
+    padding: 20px;
+    margin: 10px;
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-body);
+    font-size: calc(1rem + var(--font-size-body-offset));
+}
+
+p {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+h1, h2, h3 {
+    margin: 15px 0;
+    padding: 5px;
+}
+
+:root {
+    --font-family-headings: 'SF Pro Display', -apple-system, system-ui, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --font-weight-headings: 700;
+    --font-family-body: Lora, sans-serif;
+    --font-weight-body: 400;
+    --font-size-body-offset: 1px;
+    --font-preset-heading: sans;
+    --font-preset-body: fancy_serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-headings);
+}
+
+#map { 
+    height: 70vh; /*vh (viewport height)*/
+    /*height: 500px;*/ 
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.leaflet-sidebar-pane.active .leaflet-sidebar-header {
+    background-color: #0b3954;
+    color: #fff;
+}
+
+.tabs i {
+    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio de color */
+}
+
+/* Evita que el fondo del tab activo cubra el icono */
+.leaflet-sidebar-tabs > li.active,
+.leaflet-sidebar-tabs > ul > li.active {
+    background-color: #0b3954 !important; /* Quita el fondo azul */
+    color: #fff !important; /* Mantiene el color del texto normal */
+}
+
+/* Aplica el color solo al icono */
+.leaflet-sidebar-tabs > li.active i {
+    background-color: #0b3954 !important; /* Color de fondo del icono */
+    color: #fff !important; /* Color del icono */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.leaflet-sidebar-tabs > li.active i {
+    display: inline-block !important;
+}
+
+/*
+@media (max-width: 768px) {
+    .leaflet-sidebar {
+        width: 50% !important; /* Sidebar ocupa la mitad de la pantalla 
+        max-width: 50% !important;
+    }
+
+    .leaflet-sidebar.left {
+        left: -50%; /* Asegura que esté oculto cuando esté cerrado 
+    }
+
+    .leaflet-sidebar.right {
+        right: -50%;
+    }
+
+    .leaflet-sidebar.open {
+        left: 0 !important; /* Lo muestra cuando está abierto 
+        right: 0 !important;
+    }
+}
+    */
+
+@media (max-width: 768px) {
+    .leaflet-sidebar {
+        /*width: 50vw !important;  /* Sidebar ocupa la mitad de la pantalla ESTE ERA EL PROBLEMA, LO DEJO ACA*/
+        max-width: 50vw !important;
+        transition: transform 0.3s ease-in-out; /* Suaviza la animación */
+    }
+}

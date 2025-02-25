@@ -70,6 +70,7 @@ function makeMap() {
     // Agregamos la imagen satelital
     let imageLayer = L.imageOverlay(imageUrl, imageBounds, { opacity: 0.7 });
     imageLayer.addTo(map);
+    
 }
 
 function addTileLayer() {
@@ -92,13 +93,13 @@ function configureMarkerInteraction(layer) {
     layer.bindPopup(name);
 
     layer.on('click', function () {
-        document.getElementById("escuelaName").innerHTML = `Escuela seleccionada`;
+        document.getElementById("escuelaName").innerHTML = `Local Educativo Seleccionado`;
         document.getElementById("escuelaContent").innerHTML = `<div><p>Nombre: <b>${name}</b></p></div>`;
         // document.getElementById("escuelaInfo").textContent = `Información sobre ${name}`;
         sidebar.open('escuelas');
 
         let latlng = layer.getLatLng();
-        let offsetLng = -0.0015 / 2; // Ajusta este valor según el nivel de zoom para moverlo 400px
+        let offsetLng = -0.0015 / 3; // Ajusta este valor según el nivel de zoom para moverlo 400px
     
         map.setView([latlng.lat, latlng.lng + offsetLng], 18, { animate: true });
     });
@@ -109,17 +110,18 @@ function addGeoJSON() {
     let geojsonUrl = 'https://raw.githubusercontent.com/Tania-Karo/pilot2-mapa-calor-asu/refs/heads/main/escuelas-piloto-3.geojson';
 
     function getIconSize(zoom) {
-        let size = Math.max(20, zoom * 3);
+        let size = Math.max(10, zoom * 1.5); // Ajusta el tamaño dinámicamente, mínimo 10px
         return [size, size];
     }
 
     function createIcon(zoom) {
-        let iconSize = getIconSize(zoom);
-        return L.icon({
-            iconUrl: 'https://tania-karo.github.io/pilot2-mapa-calor-asu/imagenes/icon-1.png',
-            iconSize: iconSize,
-            iconAnchor: [iconSize[0] / 2, iconSize[1]],
-            popupAnchor: [0, -iconSize[1] / 2]
+        let [width, height] = getIconSize(zoom);
+        return L.divIcon({
+            className: "custom-div-icon",
+            html: `<i class="bi bi-mortarboard" style="font-size: ${width}px; color: #0b3954;"></i>`,
+            iconSize: [width, height],
+            iconAnchor: [width / 2, height / 2],
+            popupAnchor: [width / 2, -height / 2]
         });
     }
 
@@ -128,7 +130,7 @@ function addGeoJSON() {
         .then(data => {
             let geoJsonLayer = L.geoJSON(data, {
                 pointToLayer: (feature, latlng) => L.marker(latlng, { icon: createIcon(map.getZoom()) }),
-                onEachFeature: (feature, layer) => configureMarkerInteraction(layer)  // Llamamos a la función aquí
+                onEachFeature: (feature, layer) => configureMarkerInteraction(layer)
             }).addTo(map);
 
             map.on('zoomend', function () {
@@ -151,7 +153,7 @@ function addSidebar() {
         position: 'left',     // left or right
     }).addTo(map);
     
-    sidebar.open('home');
+    // sidebar.open('home');
 
     /* Para que cierre automáticamente cuando el usuario haga clic fuera de él*/
     map.on("click", function () {

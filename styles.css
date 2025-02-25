@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 body {
     padding: 20px;
     margin: 10px;
@@ -31,6 +33,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--font-weight-headings);
 }
 
+.custom-div-icon i {
+    font-size: 2rem;  /* Tamaño del icono */
+    color: #0b3954;  /* Color del icono */
+    background-color: white;  /* Fondo del icono */
+    padding: 10px;  /* Espaciado interno */
+    border-radius: 50%;  /* Hacerlo circular */
+    border: 1px solid rgba(0, 0, 0, 0.3);  
+
+    /* Sombra para efecto flotante */
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 #map { 
     height: 70vh; /*vh (viewport height)*/
     /*height: 500px;*/ 
@@ -44,8 +58,31 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
 }
 
+/* !!!!!!!!ICONS */
 .tabs i {
-    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio de color */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Suaviza cambios */
+    font-size: 24px; /* Ajusta el tamaño del icono */
+}
+
+/* Estilos para los botones del sidebar */
+.leaflet-sidebar-tabs > li,
+.leaflet-sidebar-tabs > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Mantiene el tamaño del botón */
+    height: 40px;
+}
+
+/* Icono centrado dentro de cada botón */
+.leaflet-sidebar-tabs > li i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px; /* Bordes suaves */
+    padding: 5px;
 }
 
 /* Evita que el fondo del tab activo cubra el icono */
@@ -55,17 +92,15 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff !important; /* Mantiene el color del texto normal */
 }
 
-/* Aplica el color solo al icono */
+/* Mantiene el color de fondo solo en el icono activo */
 .leaflet-sidebar-tabs > li.active i {
-    background-color: #0b3954 !important; /* Color de fondo del icono */
-    color: #fff !important; /* Color del icono */
+    background-color: #0b3954 !important;
+    color: #fff !important;
     border-radius: 5px;
     padding: 5px;
 }
 
-.leaflet-sidebar-tabs > li.active i {
-    display: inline-block !important;
-}
+/* !!!!!!!!ICONS */
 
 /*
 @media (max-width: 768px) {

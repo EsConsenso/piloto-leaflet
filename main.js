@@ -83,6 +83,8 @@ function addTileLayer() {
     tileOSM.on('tileload', function (event) {
         event.tile.style.filter = "grayscale(100%)"; // Aplica el filtro a cada imagen
     });
+
+    L.Control.geocoder().addTo(map);
 }
 
 // Función para configurar la interacción de los marcadores con el sidebar
